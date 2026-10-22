@@ -16,14 +16,14 @@ const upload = require("../middleware/file.middlewear");
  * @access private
  */
 
-interviewRoute.post("/", authMiddleware.verifyToken,   upload.single("resume"),  generateInterviewReportController);
+interviewRoute.post("/", authMiddleware,   upload.single("resume"),  generateInterviewReportController);
 
 /**
  * @route POST api/interview/report/:interviewId
  * @description get a interview report by interview ID 
  */
 
-interviewRoute.get("/report/:interviewId", authMiddleware.verifyToken, getInterviewReportController  );
+interviewRoute.get("/report/:interviewId", authMiddleware, getInterviewReportController  );
 
 
 /**
@@ -31,7 +31,7 @@ interviewRoute.get("/report/:interviewId", authMiddleware.verifyToken, getInterv
  * @description get all interview report by the user logged in 
  */
 
-interviewRoute.get("/", authMiddleware.verifyToken , getAllInterviewReportController )  
+interviewRoute.get("/", authMiddleware , getAllInterviewReportController )  
 
 
 
