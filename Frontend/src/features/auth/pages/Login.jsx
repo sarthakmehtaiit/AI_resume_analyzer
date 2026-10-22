@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,10 +20,14 @@ function login() {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    await handleLogin({ email, password });
-
-    navigate("/");
+    try {
+      await handleLogin({ email, password });
+      navigate("/");
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong. Please try again.");
+    }
   };
 
   if (loading) {
@@ -39,6 +44,7 @@ function login() {
         <form action="" className="flex flex-col gap-4" onSubmit={handelSubmit}>
           <Email email={email} setEmail={setEmail} />
           <Password password={password} setPassword={setPassword} />
+          {error && <p className="text-sm text-red-400">{error}</p>}
           <Button text="login" />
         </form>
 

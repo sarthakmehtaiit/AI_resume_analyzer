@@ -13,6 +13,7 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,9 +21,14 @@ function Register() {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    await handleRegister({ username, email, password });
-    navigate("/");
+    try {
+      await handleRegister({ username, email, password });
+      navigate("/");
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong. Please try again.");
+    }
   };
 
   
@@ -37,7 +43,8 @@ function Register() {
           <Username username={username} setUsername={setUsername} />
           <Email email={email} setEmail={setEmail} />
           <Password password={password} setPassword={setPassword} />
-          <Button text="Register" />
+          {error && <p className="text-sm text-red-400">{error}</p>}
+          <Button text={loading ? "Please wait..." : "Register"} />
         </form>
 
         <div className="text-white pt-5 flex justify-between mx-4">
