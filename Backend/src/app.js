@@ -21,7 +21,10 @@ app.use(cors({
 
 
 
-/*  all routes are imported here */ 
+/* health check for uptime monitors */
+app.get('/health', (req, res) => res.status(200).send('ok'));
+
+/*  all routes are imported here */
 
 
 
