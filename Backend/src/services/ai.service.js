@@ -126,7 +126,7 @@ ${jobDescription}
     try {
         // 3. Call the AI with Native Schema
         const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
+            model: process.env.GEMINI_MODEL || "gemini-3.8-flash",
             contents: prompt,
             config: {
                 responseMimeType: "application/json",
