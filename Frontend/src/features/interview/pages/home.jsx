@@ -6,6 +6,7 @@ import { useInterview } from "../hooks/useInterview";
 function Home() {
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
+  const [resumeName, setResumeName] = useState("");
   const resumeInputRef = useRef();
   const { loading, generateReport  , reports  } = useInterview();
   const navigate = useNavigate();
@@ -138,15 +139,18 @@ function Home() {
                         if (file && file.size > 5 * 1024 * 1024) {
                           alert("File size must be less than 5MB");
                           e.target.value = "";
+                          setResumeName("");
+                          return;
                         }
+                        setResumeName(file ? file.name : "");
                       }}
                     />
                   </div>
                 </div>
 
-                {resumeInputRef.current?.files[0] && (
+                {resumeName && (
                   <p className="mt-2 text-sm text-green-400">
-                    ✓ {resumeInputRef.current.files[0].name}
+                    ✓ {resumeName}
                   </p>
                 )}
               </label>
