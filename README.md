@@ -1,7 +1,7 @@
 # AI Interview Preparation Platform
 
 
-# demo- https://job-resume-check-1.onrender.com
+**Live demo:** https://ai-resume-website-2j9w.onrender.com
 
 
 ## Overview
@@ -183,7 +183,9 @@ Frontend/
     PORT=8000
     MONGO_URI=<Your_MongoDB_Connection_String>
     JWT_SECRET=<Your_JWT_Secret_Key>
-    GEMINI_API_KEY=<Your_Google_Gemini_API_Key>
+    GOOGLE_GENAI_API_KEY=<Your_Google_Gemini_API_Key>
+    FRONTEND_URL=<Your_Deployed_Frontend_URL>
+    GEMINI_MODEL=gemini-3.8-flash   # optional
     ```
 4.  **Start the server:** `npm run dev`
 
@@ -193,7 +195,7 @@ Frontend/
 2.  **Install dependencies:** `npm install`
 3.  **Create an environment file:** Create a `.env.local` file in the `Frontend` root. This is used by Vite to expose variables to the client-side code.
     ```
-    VITE_API_BASE_URL=http://localhost:8000/api
+    VITE_API_URL=http://localhost:8000
     ```
 4.  **Start the development server:** `npm run dev`
 5.  Open your browser and navigate to the URL provided by Vite (usually `http://localhost:5173`).
